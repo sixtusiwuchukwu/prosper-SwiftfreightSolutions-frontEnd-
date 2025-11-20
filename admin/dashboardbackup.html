@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../favicon_io/site.webmanifest" />
+
+    <title>SwiftfreightSolutions|qoutes</title>
+    <meta name="keywords" content="Warehouse transporter trucks storage" />
+
+    <meta
+      name="description"
+      content="SwiftfreightSolutions assures you of safe shipments of any kind of commodities to any location"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./Fonts/all.css" />
+    <link rel=stylesheet href='../plugins/quform/css/base.css' type=text/css
+    media=all>
+    <script src="https://cdn.tiny.cloud/1/bmgkynkmgn1st067lioishzahxp8kuesajt8gzwak45amdqs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+    <style>
+      .nav-header-mobile {
+        display: none;
+        width: 100%;
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(4, 4, 46);
+        padding: 14px 0px;
+        color: white;
+        position: relative;
+      }
+      .tabs.active .toggle-button svg {
+        transform: rotate(180deg); /* Rotate icon on toggle */
+      }
+      .active{
+        display: flex;
+      }
+      .toggle-button svg {
+        transition: transform 0.2s ease-in-out; /* Smooth transition */
+      }
+
+      
+      .nav-header-mobile .ul-tabs {
+        position: absolute;
+        top: 45px;
+        flex-direction: column;
+        background-color: whitesmoke;
+        width: 100%;
+        padding:0 30px;
+        display: none;
+      }
+      .toggle-button {
+        cursor: pointer; /* Indicate clickable behavior */
+      }
+      @media screen and (max-width: 740px) {
+        .nav-header {
+          display: none;
+        }
+        .nav-header-mobile {
+          display: flex;
+        }
+        ._text {
+          display: block;
+        }
+        .nav-header-mobile ._text h1 {
+          display: block !important;
+          font-size: 18px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen-reader-response"></div>
+
+    <header class="nav-header">
+      <div class="_text">
+        <h1>Quotes</h1>
+      </div>
+      <!-- <div> -->
+      <ul class="tabs">
+        <a href="#" class="open-modal" data-open="modal1"><li>Location</li></a>
+        <a href="#" class="open-modal" data-open="modal2"><li>Status</li></a>
+        <a href="#" class="open-modal" data-open="modal3"><li>Acount</li></a>
+        <a href="#" class="open-modal" data-open="modal4"><li>Send mail</li></a>
+        <a href="get-a-quote.html" ><li>Create Quote</li></a>
+        <a href="#" onclick="Logout()"><li>logout</li></a>
+      </ul>
+      <!-- </div> -->
+    </header>
+    <header class="nav-header-mobile">
+      <div class="_text">
+        <h1>Quotes</h1>
+      </div>
+      <span class="toggle-button">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="30" height="3" fill="#333"></rect>
+          <rect y="8" width="30" height="3" fill="#333"></rect>
+          <rect y="16" width="30" height="3" fill="#333"></rect></svg
+      ></span>
+      <!-- <div> -->
+      <ul class="tabs ul-tabs" >
+        <a href="#" class="open-modal" data-open="modal1"><li>Location</li></a>
+        <a href="#" class="open-modal" data-open="modal2"><li>Status</li></a>
+        <a href="#" class="open-modal" data-open="modal3"><li>Acount</li></a>
+        <a href="#" class="open-modal" data-open="modal4"><li>Send mail</li></a>
+        <a href="get-a-quote.html" style="color: black;"><li>Create Quote</li></a>
+        <a href="#" onclick="Logout()" style="color: black;"><li>logout</li></a>
+      </ul>
+      <!-- </div> -->
+    </header>
+    <div id="wrapper-body">
+      <section class="table-section">
+        <table>
+          <thead>
+            <tr>
+              <th>TrackId</th>
+              <th>Receiver FullName</th>
+              <th>Receiver Email</th>
+              <th>Receiver Phone</th>
+              <th>Quantity</th>
+              <th>Weight</th>
+              <th>Drop-off Location</th>
+              <th>Pick-up Location</th>
+              <th>Mode</th>
+              <th>Status</th>
+              <th>Current Location</th>
+            </tr>
+          </thead>
+          <tbody class="tb-container"></tbody>
+        </table>
+      </section>
+
+      <!-- POP-UP TAB -->
+      <!-- <section id="pop-up-section">
+        <div class="pop-up-wrapper">
+          <div class="close-icon" onclick="closePopUp()">
+            <i class="fa fa-times"></i>
+          </div>
+          <div id="client-details">
+            <div id="name-email">
+              <div class="details-container">
+                <label>Name</label>
+                <div class="details-wrapper">
+                  <span class="user-icon"
+                    ><i class="fa fa-user icons"></i
+                  ></span>
+                  <p class="name">Lorem Ipsum</p>
+                </div>
+              </div>
+              <div class="details-container">
+                <label>Email</label>
+                <div class="details-wrapper">
+                  <span class="email-icon"
+                    ><i class="fa fa-envelope-square icons"></i
+                  ></span>
+                  <p class="email">LoremIpsum@gmail.com</p>
+                </div>
+              </div>
+            </div>
+            <div id="address-phone">
+              <div class="details-container">
+                <label>Phone-number</label>
+                <div class="details-wrapper">
+                  <span class="phone-icon"
+                    ><i class="fa fa-phone-square icons"></i
+                  ></span>
+                  <p>1234567890</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="description">
+            <div class="product-descr-container">
+              <label>Product Description</label>
+              <div class="details-wrapper">
+                <p class="product-description">
+                  Pink colored, striped cotton bedset, 1 duvet cover, 4 pillow
+                  cases, 2 throw pillow cases, 2 bedsheets and a complementary
+                  towel
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-dimension">
+            <h5>Dimensions</h5>
+          </div>
+          <div id="dimensions">
+            <div class="product-dimension">
+              <label>Width</label>
+              <div class="details-wrapper">
+                <p class="dimen-vals">6Cm</p>
+              </div>
+            </div>
+            <div class="product-dimension">
+              <label>Height</label>
+              <div class="details-wrapper">
+                <p class="dimen-vals">10Cm</p>
+              </div>
+            </div>
+            <div class="product-dimension">
+              <label>Quantity</label>
+              <div class="details-wrapper values">
+                <p class="dimen-vals">2</p>
+              </div>
+            </div>
+
+            <div class="product-vol-weight">
+              <label>Weight</label>
+              <div class="details-wrapper values">
+                <p class="dimen-vals">6Kg</p>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div id="location">
+            <div class="details-container">
+              <label>Pick-Up Location</label>
+              <div class="details-wrapper">
+                <span class="address-icon"
+                  ><i class="fas fa-map-marker icons"></i
+                ></span>
+                <p>No.4 Kinshasha Street, Wuse Zone 6</p>
+              </div>
+            </div>
+            <div class="details-container">
+              <label>Drop-off Location</label>
+              <div class="details-wrapper">
+                <span class="address-icon"
+                  ><i class="fas fa-map-marker icons"></i
+                ></span>
+                <p>No.4 Kinshasha Street, Wuse Zone 6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    </div>
+    <div class="modal" id="modal1" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          update Item Location
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section
+          class="modal-content"
+          style="
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+          "
+        >
+          <div class="screen-reader-response"></div>
+
+          <input
+            type="text"
+            placeholder="item TrackId"
+            id="location-Id"
+            style="
+              height: 40px;
+              border-radius: 4px;
+              outline: none;
+              margin-top: 20px;
+              text-align: center;
+            "
+          />
+          <input
+            type="text"
+            placeholder="Enter Current Location"
+            id="location-value"
+            style="
+              height: 40px;
+              border-radius: 4px;
+              outline: none;
+              margin-top: 20px;
+              text-align: center;
+            "
+          />
+          <input
+            type="submit"
+            value="Submit"
+            onclick="LocationUpdate()"
+            style="
+              height: 40px;
+              border-radius: 4px;
+              outline: none;
+              margin-top: 20px;
+              text-align: center;
+              background-color: brown;
+              color: white;
+              width: 50%;
+            "
+          />
+        </section>
+      </div>
+    </div>
+    <div class="modal" id="modal2" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          Update Item status
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section
+          class="modal-content"
+          style="
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+          "
+        >
+          <input
+            type="text"
+            placeholder="item TrackId"
+            id="status-Id"
+            style="
+              height: 40px;
+              border-radius: 3px;
+              outline: none;
+              text-align: center;
+            "
+          />
+          <select
+            style="
+              width: 90%;
+              height: 40px;
+              margin-top: 10px;
+              border-radius: 4px;
+              outline: none;
+            "
+            id="status-value"
+          >
+            <option value="CONFIRMED ORDER">CONFIRMED ORDER</option>
+            <option value="PROCESSING ORDER">PROCESSING ORDER</option>
+            <option value="QUALITY CHECK">QUALITY CHECK</option>
+            <option value="ON HOLD">ON HOLD</option>
+            <option value="DISPATCHED ITEM">DISPATCHED ITEM</option>
+            <option value="PRODUCT DELIVERED">PRODUCT DELIVERED</option>
+          </select>
+          <input
+            type="submit"
+            onclick="StatusUpdate()"
+            value="Submit"
+            style="
+              height: 40px;
+              border-radius: 4px;
+              outline: none;
+              margin-top: 5px;
+              text-align: center;
+              background-color: brown;
+              color: white;
+              width: 50%;
+            "
+          />
+        </section>
+      </div>
+    </div>
+    <div class="modal" id="modal3" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          Update password
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section
+          class="modal-content"
+          style="
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+          "
+        >
+          <div class="screen-reader-response"></div>
+
+          <input
+            type="password"
+            placeholder="Old password"
+            class="password-Id"
+            style="
+              height: 40px;
+              border-radius: 3px;
+              outline: none;
+              text-align: center;
+              margin-bottom: 10px;
+            "
+          />
+          <input
+            type="password"
+            placeholder="New password"
+            class="password-Id"
+            style="
+              height: 40px;
+              border-radius: 3px;
+              outline: none;
+              text-align: center;
+            "
+          />
+
+          <input
+            type="submit"
+            onclick="PasswordUpdate()"
+            value="Submit"
+            style="
+              height: 40px;
+              border-radius: 4px;
+              outline: none;
+              margin-top: 5px;
+              text-align: center;
+              background-color: brown;
+              color: white;
+              width: 50%;
+            "
+          />
+        </section>
+      </div>
+    </div>
+    <div class="modal" id="modal4" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          Send Email
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section
+          class="modal-content"
+          style="
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+          "
+        >
+          <div class="screen-reader-response"></div>
+
+          <input
+            type="text"
+            placeholder="Subject"
+            class="input-field"
+            id="subject"
+            style="
+              height: 40px;
+              border-radius: 3px;
+              outline: none;
+              text-align: center;
+              margin-bottom: 10px;
+            "
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            id="mail-email"
+            class="input-field"
+            style="
+              height: 40px;
+              border-radius: 3px;
+              outline: none;
+              text-align: center;
+              margin-bottom: 10px;
+            "
+          />
+          <textarea name="editor1" id="mail-body"></textarea>
+
+          <input
+            type="submit"
+            onclick="return sendEmail();"
+            value="Send"
+            style="
+              height: 40px;
+              border-radius: 4px;
+              outline: none;
+              margin-top: 15px;
+              text-align: center;
+              background-color: brown;
+              color: white;
+              width: 50%;
+            "
+          />
+        </section>
+      </div>
+    </div>
+    <div class="modal" id="modal5" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          Create Quote
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section class="modal-content" style="overflow-y: auto; max-height: calc(100vh - 100px);"> 
+          <div class="screen-reader-response"></div>
+
+          <div class="gdlr-core-pbf-column gdlr-core-column-30" data-skin="Re Button 2">
+            <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+                <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+                    <div class=gdlr-core-pbf-element>
+                        <div class="gdlr-core-contact-form-7-item gdlr-core-item-pdlr gdlr-core-item-pdb ">
+                            <div role=form class=wpcf7 id=wpcf7-f6499-p6368-o1 lang=en-US dir=ltr>
+                                <div class=screen-reader-response></div>
+                                <form  method=post class=wpcf7-form  onsubmit="return HandleQoute()">
+
+                                    <div class="gdlr-core-input-wrap gdlr-core-large gdlr-core-full-width gdlr-core-with-column ">
+                                        <h4>Sender Information</h4>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-name"><input id="qoute-input" type=text name=senderfullName value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Full Name*"></span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-email"><input id="qoute-input" type=email name=senderEmail value size=40 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="Email*"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-phone"><input id="qoute-input" type=text name=senderPhone value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Phone Number*"></span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-phone"><input id="qoute-input" type=text name=senderAddress value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Address*"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap your-name"><input id="qoute-input" type=text name=senderCity value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="City*"></span></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap "><input id="qoute-input" type=text name=senderState value size=40 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="state/province*"></span></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap your-name"><input id="qoute-input" type=text name=senderCountry value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Country*"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap "><input id="qoute-input" type=number name=senderZipCode value size=40 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="ZipCode*"></span></div>
+
+                                        <h4>Receiver Information</h4>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-name"><input id="qoute-input" type=text name=receiverfullName value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Full Name*"></span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-email"><input id="qoute-input" type=email name=receiverEmail value size=40 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="Email*"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-phone"><input id="qoute-input" type=text name=receiverPhone value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Phone Number*"></span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-phone"><input id="qoute-input" type=text name=receiverAddress value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Address*"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap your-name"><input id="qoute-input" type=text name=receiverCity value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="City*"></span></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap "><input id="qoute-input" type=text name=receiverState value size=40 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="state/province*"></span></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap your-name"><input id="qoute-input" type=text name=receiverCountry value size=40 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Country*"></span></div>
+                                        <div class=gdlr-core-column-32><span class="wpcf7-form-control-wrap "><input id="qoute-input" type=number name=receiverZipCode value size=40 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="ZipCode*"></span></div>
+
+                                        <h4>Cargo Details</h4>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-weight">
+                                            <select id="qoute-input" class="my-select" name="mode">
+                                                <option value="">Cargo Type</option>
+                                                <option value="air">air</option>
+                                                <option value="sea">sea</option>
+                                                <option value="road">road</option>
+                                                <option value="rail">rail</option>
+                                            </select>
+                                        </span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-origin"><input id="qoute-input" type=text name=description value size=100 class="wpcf7-form-control wpcf7-text" aria-invalid=false placeholder="Item short description"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-origin"><input id="qoute-input" type=text name=pickUp value size=40 class="wpcf7-form-control wpcf7-text" aria-invalid=false placeholder="Pick-up location"></span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-destination"><input id="qoute-input" type=text name=dropOff value size=40 class="wpcf7-form-control wpcf7-text" aria-invalid=false placeholder="Drop-off location"></span></div>
+                                        <div class=clear></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-quantity"><input id="qoute-input" type=text name=quantity value size=40 class="wpcf7-form-control wpcf7-text" aria-invalid=false placeholder=Quantity></span></div>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-weight"><input id="qoute-input" type=text name=weight value size=40 class="wpcf7-form-control wpcf7-text" aria-invalid=false placeholder=Weight></span></div>
+                                        <div class=clear></div>
+                                        <label>Arrival Date:</label>
+                                        <div class=gdlr-core-column-48><span class="wpcf7-form-control-wrap your-weight"><input id="qoute-input" type=date name=arrivalDate value size=40 class="wpcf7-form-control wpcf7-text" aria-invalid=false placeholder=Arrival Date></span></div>
+                                        <div class=clear></div>
+
+                                        <div class=gdlr-core-column-60>
+                                            <input  type=submit value="Submit Now" class="wpcf7-form-control wpcf7-submit gdlr-core-full">
+                                        </div>
+                                    </div>
+                                    <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./../Api/toster.js"></script>
+    <script src="./script.js"></script>
+    <script src="./Fonts/all.js"></script>
+  </body>
+</html>

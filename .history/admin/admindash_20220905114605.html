@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+<link rel="manifest" href="../favicon_io/site.webmanifest">
+
+    <title>SwiftfreightSolutions|qoutes</title>
+    <meta name="keywords" content="Warehouse transporter trucks storage">
+
+    <meta name="description" content="SwiftfreightSolutions assures you of safe shipments of any kind of commodities to any location">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./Fonts/all.css" />
+    <link rel=stylesheet href='../plugins/quform/css/base.css' type=text/css media=all>
+
+
+</head>
+  <body>
+    <div class=screen-reader-response></div>
+
+    <header class="nav-header">
+      <div class="_text">
+        <h1>Quotes</h1>
+      </div>
+      <!-- <div> -->
+      <ul class="tabs">
+        <a href="#" class="open-modal" data-open="modal1"><li>Location</li></a>
+        <a href="#"class="open-modal" data-open="modal2" ><li>Status</li></a>
+        <a href="#"class="open-modal" data-open="modal3" ><li>Acount</li></a>
+        <a href="#" onclick="Logout()"><li>logout</li></a>
+      </ul>
+      <!-- </div> -->
+    </header>
+    <div id="wrapper-body">
+      <section class="table-section">
+        <table>
+          <thead>
+            <tr>
+              <th>TrackId</th>
+              <th>FullName</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Quantity</th>
+              <th>Width</th>
+              <th>Height</th>
+              <th>Drop-off Location</th>
+              <th>Pick-up Location</th>
+              <th>Mode</th>
+              <th>Status</th>
+              <th>Current Location</th>
+            </tr>
+          </thead>
+          <tbody class="tb-container"></tbody>
+        </table>
+      </section>
+
+      <!-- POP-UP TAB -->
+      <!-- <section id="pop-up-section">
+        <div class="pop-up-wrapper">
+          <div class="close-icon" onclick="closePopUp()">
+            <i class="fa fa-times"></i>
+          </div>
+          <div id="client-details">
+            <div id="name-email">
+              <div class="details-container">
+                <label>Name</label>
+                <div class="details-wrapper">
+                  <span class="user-icon"
+                    ><i class="fa fa-user icons"></i
+                  ></span>
+                  <p class="name">Lorem Ipsum</p>
+                </div>
+              </div>
+              <div class="details-container">
+                <label>Email</label>
+                <div class="details-wrapper">
+                  <span class="email-icon"
+                    ><i class="fa fa-envelope-square icons"></i
+                  ></span>
+                  <p class="email">LoremIpsum@gmail.com</p>
+                </div>
+              </div>
+            </div>
+            <div id="address-phone">
+              <div class="details-container">
+                <label>Phone-number</label>
+                <div class="details-wrapper">
+                  <span class="phone-icon"
+                    ><i class="fa fa-phone-square icons"></i
+                  ></span>
+                  <p>1234567890</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="description">
+            <div class="product-descr-container">
+              <label>Product Description</label>
+              <div class="details-wrapper">
+                <p class="product-description">
+                  Pink colored, striped cotton bedset, 1 duvet cover, 4 pillow
+                  cases, 2 throw pillow cases, 2 bedsheets and a complementary
+                  towel
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-dimension">
+            <h5>Dimensions</h5>
+          </div>
+          <div id="dimensions">
+            <div class="product-dimension">
+              <label>Width</label>
+              <div class="details-wrapper">
+                <p class="dimen-vals">6Cm</p>
+              </div>
+            </div>
+            <div class="product-dimension">
+              <label>Height</label>
+              <div class="details-wrapper">
+                <p class="dimen-vals">10Cm</p>
+              </div>
+            </div>
+            <div class="product-dimension">
+              <label>Quantity</label>
+              <div class="details-wrapper values">
+                <p class="dimen-vals">2</p>
+              </div>
+            </div>
+
+            <div class="product-vol-weight">
+              <label>Weight</label>
+              <div class="details-wrapper values">
+                <p class="dimen-vals">6Kg</p>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div id="location">
+            <div class="details-container">
+              <label>Pick-Up Location</label>
+              <div class="details-wrapper">
+                <span class="address-icon"
+                  ><i class="fas fa-map-marker icons"></i
+                ></span>
+                <p>No.4 Kinshasha Street, Wuse Zone 6</p>
+              </div>
+            </div>
+            <div class="details-container">
+              <label>Drop-off Location</label>
+              <div class="details-wrapper">
+                <span class="address-icon"
+                  ><i class="fas fa-map-marker icons"></i
+                ></span>
+                <p>No.4 Kinshasha Street, Wuse Zone 6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    </div>
+    <div class="modal" id="modal1" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          update Item Location
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section class="modal-content" style="display: flex;flex-direction: column;align-content: center;align-items: center;">
+            <div class=screen-reader-response></div>
+
+            <input type="text" placeholder="item TrackId" id="location-Id"style="height: 40px;border-radius: 4px; outline: none;margin-top: 20px; text-align: center; ">
+          <input type="text" placeholder="Enter Current Location" id="location-value" style="height: 40px;border-radius: 4px; outline: none;margin-top: 20px; text-align: center; ">
+          <input type="submit" value="Submit" onclick="LocationUpdate()" style="height: 40px;border-radius: 4px; outline: none;margin-top: 20px; text-align: center; background-color: brown;color: white;width: 50%;">
+        </section>
+      </div>
+    </div> 
+    <div class="modal" id="modal2" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          Update Item status
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section class="modal-content" style="display: flex;flex-direction: column;align-content: center;align-items: center;">
+            <input type="text" placeholder="item TrackId" id="status-Id" style="height: 40px; border-radius: 3px;outline: none;  text-align: center;">
+             <select  style="width:90%;height:40px;margin-top: 10px;border-radius: 4px;outline: none;" id="status-value">
+                <option value="CONFIRMED ORDER">CONFIRMED ORDER</option>
+                <option value="PROCESSING ORDER" >PROCESSING ORDER</option>
+                <option value="QUALITY CHECK">QUALITY CHECK</option>
+                <option value="DISPATCHED ITEM">DISPATCHED ITEM</option>
+                <option value="PRODUCT DELIVERED">PRODUCT DELIVERED</option>
+                </select> 
+                <input type="submit" onclick="StatusUpdate()" value="Submit" style="height: 40px;border-radius: 4px; outline: none;margin-top: 5px; text-align: center; background-color: brown;color: white;width:50%;">
+          </section>
+
+      </div>
+    </div>
+     <div class="modal" id="modal3" data-animation="slideInOutLeft">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          Update password
+          <button class="close-modal" aria-label="close modal" data-close>
+            ✕
+          </button>
+        </header>
+        <section class="modal-content" style="display: flex;flex-direction: column;align-content: center;align-items: center;">
+            <div class=screen-reader-response></div>
+
+            <input type="password" placeholder="Old password" class="password-Id" style="height: 40px; border-radius: 3px;outline: none;  text-align: center;margin-bottom: 10px;">
+            <input type="password" placeholder="New password" class="password-Id" style="height: 40px; border-radius: 3px;outline: none;  text-align: center;">
+            
+                <input type="submit" onclick="PasswordUpdate()" value="Submit" style="height: 40px;border-radius: 4px; outline: none;margin-top: 5px; text-align: center;background-color: brown;color: white;width: 50%;">
+          </section>
+
+      </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./../Api/toster.js"></script>
+    <script src="./script.js"></script>
+    <script src="./Fonts/all.js"></script>
+  </body>
+</html>
