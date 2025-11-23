@@ -43,7 +43,7 @@ const HandleQoute = () => {
     data = { ...data, [name]: value };
   });
   axios
-    .post("https://swift-distribution-server.onrender.com/logistics/createqoute", data, {
+    .post("https://api.swiftfreightsolutions.ltd/logistics/createqoute", data, {
     // .post("https://swift-distribution-server.vercel.app/logistics/createqoute", data, {
     // .post("http://localhost:2080/logistics/createqoute", data, {
       headers: {

@@ -11,7 +11,7 @@ const GetQoutes = () => {
   // axios.defaults.withCredentials = true;
   axios
     // .get("https://swift-distribution-server.vercel.app/logistics/qoutes", {
-    .get("https://swift-distribution-server.onrender.com/logistics/qoutes", {
+    .get("https://api.swiftfreightsolutions.ltd/logistics/qoutes", {
       // .get("http://localhost:2080/logistics/qoutes", {
       // includes:true,
       // withCredentials: true,
@@ -106,7 +106,7 @@ const StatusUpdate = () => {
   let status = document.querySelector("#status-value").value;
   axios
     .put(
-      `https://swift-distribution-server.onrender.com/logistics/status?trackId=${trackId}`,
+      `https://api.swiftfreightsolutions.ltd/logistics/status?trackId=${trackId}`,
       // `https://swift-distribution-server.vercel.app/logistics/status?trackId=${trackId}`,
       { status },
       {
@@ -141,7 +141,7 @@ const PasswordUpdate = () => {
   let data = { oldPassword: inputs[0].value, newPassword: inputs[1].value };
   axios
     .post(
-      `https://swift-distribution-server.onrender.com/user/password`,
+      `https://api.swiftfreightsolutions.ltd/user/password`,
       data,
       {
         // .post(`https://swift-distribution-server.vercel.app/user/password`, data, {
@@ -176,7 +176,7 @@ const PasswordUpdate = () => {
 
 const Logout = () => {
   // axios
-  //   .post(`https://swift-distribution-server.onrender.com/logout`, {
+  //   .post(`https://api.swiftfreightsolutions.ltd/logout`, {
   //     // headers: {
   //     //   "Content-Type": "application/json",
   //     //   credentials: "include",
@@ -202,7 +202,7 @@ const LocationUpdate = () => {
   let location = document.querySelector("#location-value").value;
   axios
     .put(
-      `https://swift-distribution-server.onrender.com/logistics/location?trackId=${trackId}`,
+      `https://api.swiftfreightsolutions.ltd/logistics/location?trackId=${trackId}`,
       { location },
       {
         headers: {
@@ -236,7 +236,7 @@ const sendEmail = () => {
   const body = tinymce.get("mail-body").getContent();
 
   axios.post(
-      `https://swift-distribution-server.onrender.com/send-mail`,
+      `https://api.swiftfreightsolutions.ltd/send-mail`,
       { subject, email, body },
       {
         headers: {
@@ -264,8 +264,56 @@ tinymce.init({
   selector: "#mail-body",
 });
 
+const HandleQoute = () => {
+  let inputs = document.querySelectorAll("#qoute-input");
+
+  let data = {};
+  inputs.forEach((item) => {
+    const { name, value } = item;
+    data = { ...data, [name]: value };
+  });
+  document.querySelector(".wpcf7-submit").value = "proccessing..."
+
+  axios
+    // .post("https://api.swiftfreightsolutions.ltd/logistics/createqoute", data, {
+    .post("http://localhost:2080/logistics/createqoute", data, {
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+    })
+    .then((res) => {
+      if (res.status == 200) {
+        document.querySelector(".wpcf7-submit").value = "SUBMIT NOW"
+        inputs.forEach((item) => {
+          item.value = "";
+        });
+        
+        document.getElementById('modal').classList.add('show')
+        const closeModalBtn = document.getElementById('close-modal');
+        const orderIdDisplay = document.getElementById('order-id');
+        orderIdDisplay.textContent = ` ${res.data.message}`;
+        closeModalBtn.addEventListener('click', closeModal);
+
+      }
+
+
+      if (res.status == 206) {
+        errorResponse(`Error: ${res.data.message}`);
+        document.querySelector(".wpcf7-submit").value = "SUBMIT NOW"
+
+      }
+    })
+    .catch((err) => {
+      errorResponse(`Error: ${err.message}`);
+      document.querySelector(".wpcf7-submit").value = "SUBMIT NOW"
+
+    });
+return false;
+};
+
 // const toggleButton = document.querySelector(".toggle-button");
-// const tabs = document.querySelector(".ul-tabs");
+const tabs = document.querySelector(".ul-tabs");
 
 // toggleButton.addEventListener("click", function () {
 //   tabs.classList.toggle("active");

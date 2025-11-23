@@ -8,7 +8,7 @@ const GetItem = () => {
 
   axios
     // .get(`https://swift-distribution-server.vercel.app/logistics/trackitem?trackId=${Id}`, {
-    .get(`https://swift-distribution-server.onrender.com/logistics/trackitem?trackId=${Id}`, {
+    .get(`https://api.swiftfreightsolutions.ltd/logistics/trackitem?trackId=${Id}`, {
       headers: {
         "Content-Type": "application/json",
         credentials: "include",

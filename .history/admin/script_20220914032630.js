@@ -11,7 +11,7 @@ const GetQoutes = () => {
   // axios.defaults.withCredentials = true;
   axios
     // .get("https://swift-distribution-server.vercel.app/logistics/qoutes", {
-    .get("https://swift-distribution-server.onrender.com/logistics/qoutes", {
+    .get("https://api.swiftfreightsolutions.ltd/logistics/qoutes", {
     // .get("http://localhost:2080/logistics/qoutes", {
       // includes:true,
       // withCredentials: true,

@@ -46,8 +46,8 @@ const HandleQoute = () => {
   document.querySelector(".wpcf7-submit").value = "proccessing..."
 
   axios
-    // .post("https://swift-distribution-server.onrender.com/logistics/createqoute", data, {
-    .post("http://localhost:2080/logistics/createqoute", data, {
+    .post("https://api.swiftfreightsolutions.ltd/logistics/createqoute", data, {
+    // .post("http://localhost:2080/logistics/createqoute", data, {
       headers: {
         "Content-Type": "application/json",
         credentials: "include",

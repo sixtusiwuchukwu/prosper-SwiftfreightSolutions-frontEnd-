@@ -11,7 +11,7 @@ const GetQoutes = () => {
   // axios.defaults.withCredentials = true;
   axios
     // .get("https://swift-distribution-server.vercel.app/logistics/qoutes", {
-    .get("https://swift-distribution-server.onrender.com/logistics/qoutes", {
+    .get("https://api.swiftfreightsolutions.ltd/logistics/qoutes", {
     // .get("http://localhost:2080/logistics/qoutes", {
       // includes:true,
       // withCredentials: true,
@@ -106,7 +106,7 @@ const StatusUpdate = () => {
   let status = document.querySelector("#status-value").value;
   axios
     .put(
-      `https://swift-distribution-server.onrender.com/logistics/status?trackId=${trackId}`,
+      `https://api.swiftfreightsolutions.ltd/logistics/status?trackId=${trackId}`,
       // `https://swift-distribution-server.vercel.app/logistics/status?trackId=${trackId}`,
       { status },
       {
@@ -140,7 +140,7 @@ const PasswordUpdate = () => {
   let inputs = document.querySelectorAll(".password-Id");
   let data = { oldPassword: inputs[0].value, newPassword: inputs[1].value };
   axios
-    .post(`https://swift-distribution-server.onrender.com/user/password`, data, {
+    .post(`https://api.swiftfreightsolutions.ltd/user/password`, data, {
     // .post(`https://swift-distribution-server.vercel.app/user/password`, data, {
       headers: {
         "Content-Type": "application/json",
@@ -173,7 +173,7 @@ const PasswordUpdate = () => {
 const Logout = () => {
   
   axios
-    .post(`https://swift-distribution-server.onrender.com/logout`, {
+    .post(`https://api.swiftfreightsolutions.ltd/logout`, {
       // headers: {
       //   "Content-Type": "application/json",
       //   credentials: "include",
@@ -197,7 +197,7 @@ const LocationUpdate = () => {
   let location = document.querySelector("#location-value").value;
   axios
     .put(
-      `https://swift-distribution-server.onrender.com/logistics/location?trackId=${trackId}`,
+      `https://api.swiftfreightsolutions.ltd/logistics/location?trackId=${trackId}`,
       { location },
       {
         headers: {

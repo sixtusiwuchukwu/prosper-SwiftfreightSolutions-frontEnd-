@@ -826,7 +826,7 @@ p.quform-group-description {
 border-radius: 5px;
 padding: 8px;
 text-align: center;
-
+z-index: 99999999;
 }
 .my-quform-sucess-message {
     margin-bottom: 10px;
@@ -837,5 +837,6 @@ text-align: center;
 	border: none;
 border-radius: 5px;
 text-align: center;
+z-index: 99999999;
 
 }
